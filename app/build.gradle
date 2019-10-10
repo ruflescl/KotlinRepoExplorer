@@ -29,6 +29,8 @@ dependencies {
 
     implementation kotlin.values()
     implementation androidX.values()
+    implementation picasso.values()
+    implementation retrofit.values()
 
     testImplementation testImpl.values()
 

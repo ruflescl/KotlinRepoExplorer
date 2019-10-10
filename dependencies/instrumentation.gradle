@@ -1,0 +1,9 @@
+ext {
+    def JUnit = "1.1.0"
+    def Espresso = "3.1.1"
+
+    androidTestImpl = [
+            junit: "androidx.test.ext:junit:${JUnit}",
+            espressoCore: "androidx.test.espresso:espresso-core:${Espresso}"
+    ]
+}

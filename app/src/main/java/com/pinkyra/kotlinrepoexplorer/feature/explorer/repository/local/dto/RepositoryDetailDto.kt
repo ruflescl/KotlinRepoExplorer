@@ -1,13 +1,11 @@
 package com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.dto
 
-import androidx.room.ColumnInfo
-import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.Ignore
+import androidx.room.*
 import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 
 @Entity(tableName = "repository_detail")
 data class RepositoryDetailDto(
+    @PrimaryKey
     override val id: Long,
     override val name: String,
     @ColumnInfo(name = "forks_count")

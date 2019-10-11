@@ -2,7 +2,6 @@ package com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.remote.model.ExplorerRemoteRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.model.ExplorerUseCase
 
 @Suppress("UNCHECKED_CAST")

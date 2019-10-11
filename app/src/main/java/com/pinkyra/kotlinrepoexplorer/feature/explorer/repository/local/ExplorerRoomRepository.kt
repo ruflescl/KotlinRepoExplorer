@@ -2,7 +2,6 @@ package com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local
 
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.dto.RepositoryDetailDto
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.model.ExplorerLocalRepository
-import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 import com.pinkyra.kotlinrepoexplorer.room.AppDatabase
 
 class ExplorerRoomRepository(database: AppDatabase) : ExplorerLocalRepository(database) {

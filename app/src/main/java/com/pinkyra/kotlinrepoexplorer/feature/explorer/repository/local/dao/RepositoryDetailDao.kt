@@ -2,7 +2,6 @@ package com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.dao
 
 import androidx.room.*
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.dto.RepositoryDetailDto
-import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 
 @Dao
 interface RepositoryDetailDao {

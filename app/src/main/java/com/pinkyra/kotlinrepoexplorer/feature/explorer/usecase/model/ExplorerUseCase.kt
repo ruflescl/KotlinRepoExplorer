@@ -16,6 +16,7 @@ abstract class ExplorerUseCase(
     protected val cacheTimeUnit = TimeUnit.MINUTES
     protected val cacheTimeValue = 2L
 
+    abstract suspend fun clearAllData()
     abstract suspend fun fetchFirstPage(): List<RepositoryDetail>
     abstract suspend fun fetchNextPage(): List<RepositoryDetail>
     protected abstract suspend fun fetchData(

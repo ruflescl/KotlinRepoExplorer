@@ -18,4 +18,7 @@ class ExplorerRoomRepository(database: AppDatabase) : ExplorerLocalRepository(da
 
     override fun saveRepositoryDetails(repositoryDetails: List<RepositoryDetailDto>) =
         repositoryDetailDao.insertAll(repositoryDetails)
+
+    override fun deleteAllData() = repositoryDetailDao.deleteAll(repositoryDetailDao.getAll())
+
 }

@@ -21,12 +21,15 @@ class ExplorerViewModel(private val useCase: ExplorerUseCase) : ViewModel() {
     fun interpret(interactorValue: ExplorerInteractor) {
         when (interactorValue) {
             is ExplorerInteractor.FetchNextPage -> fetchNextPage()
-            is ExplorerInteractor.ReloadData -> reloadData()
+            is ExplorerInteractor.ReloadData -> reloadData(interactorValue.forceDataRenewal)
         }
     }
 
-    private fun reloadData() {
+    private fun reloadData(forceDataRenewal: Boolean) {
         viewModelScope.launch {
+            if (forceDataRenewal) {
+                useCase.clearAllData()
+            }
             repositoryDetailList.clear()
             state.value = repositoryDetailList
             fetchFirstPage()

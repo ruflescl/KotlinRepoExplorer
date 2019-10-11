@@ -5,8 +5,8 @@ import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 
 @Entity(tableName = "repository_detail")
 data class RepositoryDetailDto(
-    @PrimaryKey
-    override val id: Long,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long,
     override val name: String,
     @ColumnInfo(name = "forks_count")
     override val forksCount: Int,

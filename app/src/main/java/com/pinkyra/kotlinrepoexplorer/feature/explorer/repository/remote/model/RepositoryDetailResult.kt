@@ -4,7 +4,6 @@ import com.google.gson.annotations.SerializedName
 import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 
 data class RepositoryDetailResult(
-    override val id: Long,
     override val name: String,
     override val owner: OwnerResult,
     @SerializedName("forks_count")

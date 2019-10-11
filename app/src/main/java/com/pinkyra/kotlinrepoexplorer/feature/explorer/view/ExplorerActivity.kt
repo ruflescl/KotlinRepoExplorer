@@ -6,17 +6,18 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.pinkyra.kotlinrepoexplorer.R
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.remote.ExplorerRetrofitRepository
-import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerInteractor
+import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.KotlinExplorerUseCase
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModel
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModelFactory
-import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewState
 import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 import kotlinx.android.synthetic.main.activity_explorer.*
 
 class ExplorerActivity : AppCompatActivity() {
     private val viewModel: ExplorerViewModel by lazy {
-        ViewModelProviders.of(this, ExplorerViewModelFactory(ExplorerRetrofitRepository()))
-            .get(ExplorerViewModel::class.java)
+        ViewModelProviders.of(
+            this,
+            ExplorerViewModelFactory(KotlinExplorerUseCase(ExplorerRetrofitRepository()))
+        ).get(ExplorerViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,15 +25,11 @@ class ExplorerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_explorer)
 
         setupObservers()
-
-        viewModel.interpret(ExplorerInteractor.FetchData(true))
     }
 
     private fun setupObservers() {
         viewModel.viewState.observe(this, Observer {
-            when (it) {
-                is ExplorerViewState.FetchSucessful -> updateList(it.repositoryDetail)
-            }
+            updateList(it)
         })
     }
 

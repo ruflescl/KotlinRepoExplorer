@@ -4,22 +4,46 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pinkyra.kotlinrepoexplorer.feature.explorer.model.ExplorerRemoteRepository
+import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.model.ExplorerUseCase
+import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 import kotlinx.coroutines.launch
 
-class ExplorerViewModel(private val remoteRepository: ExplorerRemoteRepository) : ViewModel() {
-    private val state: MutableLiveData<ExplorerViewState> = MutableLiveData()
-    val viewState: LiveData<ExplorerViewState> = state
+class ExplorerViewModel(private val useCase: ExplorerUseCase) : ViewModel() {
+    private val state: MutableLiveData<List<RepositoryDetail>> = MutableLiveData()
+    val viewState: LiveData<List<RepositoryDetail>> = state
+
+    private val repositoryDetailList: ArrayList<RepositoryDetail> = arrayListOf()
+
+    init {
+        fetchFirstPage()
+    }
 
     fun interpret(interactorValue: ExplorerInteractor) {
         when (interactorValue) {
-            is ExplorerInteractor.FetchData -> fetchData()
+            is ExplorerInteractor.FetchNextPage -> fetchNextPage()
+            is ExplorerInteractor.ReloadData -> reloadData()
         }
     }
 
-    private fun fetchData() {
+    private fun reloadData() {
         viewModelScope.launch {
-            state.value = ExplorerViewState.FetchSucessful(remoteRepository.fetchRepository().items)
+            repositoryDetailList.clear()
+            state.value = repositoryDetailList
+            fetchFirstPage()
+        }
+    }
+
+    private fun fetchNextPage() {
+        viewModelScope.launch {
+            repositoryDetailList.addAll(useCase.fetchNextPage().items)
+            state.value = repositoryDetailList
+        }
+    }
+
+    private fun fetchFirstPage() {
+        viewModelScope.launch {
+            repositoryDetailList.addAll(useCase.fetchFirstPage().items)
+            state.value = repositoryDetailList
         }
     }
 }

@@ -6,5 +6,5 @@ import retrofit2.http.QueryMap
 
 interface GithubApi {
     @GET("/search/repositories")
-    suspend fun getRepository(@QueryMap(encoded = false) filter: Map<String, String>): RepositoryResult
+    suspend fun getRepository(@QueryMap(encoded = false) filter: Map<String, String?>): RepositoryResult
 }

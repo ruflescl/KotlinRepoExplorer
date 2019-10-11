@@ -4,7 +4,9 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.pinkyra.kotlinrepoexplorer.CustomApplication
 import com.pinkyra.kotlinrepoexplorer.R
+import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.ExplorerRoomRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.remote.ExplorerRetrofitRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.KotlinExplorerUseCase
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModel
@@ -16,7 +18,12 @@ class ExplorerActivity : AppCompatActivity() {
     private val viewModel: ExplorerViewModel by lazy {
         ViewModelProviders.of(
             this,
-            ExplorerViewModelFactory(KotlinExplorerUseCase(ExplorerRetrofitRepository()))
+            ExplorerViewModelFactory(
+                KotlinExplorerUseCase(
+                    ExplorerRetrofitRepository(),
+                    ExplorerRoomRepository((application as CustomApplication).database)
+                )
+            )
         ).get(ExplorerViewModel::class.java)
     }
 

@@ -1,9 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 apply from: '../dependencies/core.gradle'
 apply from: '../dependencies/instrumentation.gradle'
 apply from: '../dependencies/test.gradle'
+apply from: '../dependencies/annotation.gradle'
 
 android {
     compileSdkVersion 29
@@ -31,6 +33,9 @@ dependencies {
     implementation androidX.values()
     implementation picasso.values()
     implementation retrofit.values()
+    implementation roomImpl.values()
+
+    kapt roomAnnotations.values()
 
     testImplementation testImpl.values()
 

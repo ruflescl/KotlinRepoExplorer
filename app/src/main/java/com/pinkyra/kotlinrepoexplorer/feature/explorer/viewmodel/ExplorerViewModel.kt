@@ -35,14 +35,14 @@ class ExplorerViewModel(private val useCase: ExplorerUseCase) : ViewModel() {
 
     private fun fetchNextPage() {
         viewModelScope.launch {
-            repositoryDetailList.addAll(useCase.fetchNextPage().items)
+            repositoryDetailList.addAll(useCase.fetchNextPage())
             state.value = repositoryDetailList
         }
     }
 
     private fun fetchFirstPage() {
         viewModelScope.launch {
-            repositoryDetailList.addAll(useCase.fetchFirstPage().items)
+            repositoryDetailList.addAll(useCase.fetchFirstPage())
             state.value = repositoryDetailList
         }
     }

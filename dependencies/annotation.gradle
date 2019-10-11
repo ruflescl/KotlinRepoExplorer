@@ -1,0 +1,7 @@
+ext {
+    def Room = "2.2.0"
+
+    roomAnnotations = [
+            room: "androidx.room:room-compiler:${Room}"
+    ]
+}

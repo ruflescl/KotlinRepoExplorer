@@ -63,7 +63,7 @@ class ExplorerActivity : AppCompatActivity() {
 
     private fun fetchNewPage() {
         pbLoadingNextPage.visibility = View.VISIBLE
-        viewModel.interpret(ExplorerInteractor.FetchNextPage(true))
+        viewModel.interpret(ExplorerInteractor.FetchNextPage)
     }
 
     private fun setupSwipeRefreshLayout() {

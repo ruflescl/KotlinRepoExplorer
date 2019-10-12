@@ -7,7 +7,9 @@
     </style>
 
     <style name="TextHeading" parent="TextAppearance.AppCompat.Title" />
+
     <style name="TextBody" parent="TextAppearance.AppCompat.Body1" />
+
     <style name="TextBodyItalic" parent="TextAppearance.AppCompat.Body1">
         <item name="android:textStyle">italic</item>
     </style>

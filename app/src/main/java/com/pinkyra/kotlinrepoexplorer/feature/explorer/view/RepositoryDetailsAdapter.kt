@@ -11,8 +11,8 @@ import com.squareup.picasso.Picasso
 
 class RepositoryDetailsAdapter(
     private var repositoryDetails: ArrayList<RepositoryDetail>
-) :
-    RecyclerView.Adapter<RepositoryDetailsAdapter.RepositoryViewHolder>() {
+) : RecyclerView.Adapter<RepositoryDetailsAdapter.RepositoryViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepositoryViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemRepositoryDetailBinding.inflate(layoutInflater, parent, false)

@@ -1,11 +1,15 @@
 <resources>
 
-    <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="TextHeading" parent="TextAppearance.AppCompat.Title" />
+    <style name="TextBody" parent="TextAppearance.AppCompat.Body1" />
+    <style name="TextBodyItalic" parent="TextAppearance.AppCompat.Body1">
+        <item name="android:textStyle">italic</item>
     </style>
 
 </resources>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/list_item_inner_margin_normal"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtRepoName"
+            style="@style/TextHeading"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_small"
+            android:text="@{item.name}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/lorem" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtAuthor"
+            style="@style/TextBody"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_small"
+            android:layout_marginTop="@dimen/view_margin_extra_small"
+            android:text="@{item.owner.login}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgAvatar"
+            app:layout_constraintTop_toBottomOf="@id/txtRepoName"
+            tools:text="@tools:sample/lorem" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glVertical50"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintGuide_percent="0.5"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgStar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/view_margin_small"
+            android:src="@drawable/ic_star_yellow"
+            app:layout_constraintStart_toStartOf="@id/txtAuthor"
+            app:layout_constraintTop_toBottomOf="@id/txtAuthor" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtStarCount"
+            style="@style/TextBodyItalic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_small"
+            android:text="@{String.valueOf(item.stargazersCount)}"
+            app:layout_constraintBottom_toBottomOf="@+id/imgStar"
+            app:layout_constraintEnd_toEndOf="@id/glVertical50"
+            app:layout_constraintStart_toEndOf="@id/imgStar"
+            app:layout_constraintTop_toTopOf="@id/imgStar"
+            tools:text="123" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgFork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_fork_blue"
+            app:layout_constraintStart_toStartOf="@id/glVertical50"
+            app:layout_constraintTop_toTopOf="@id/imgStar" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtForkCount"
+            style="@style/TextBodyItalic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/view_margin_small"
+            android:text="@{String.valueOf(item.forksCount)}"
+            app:layout_constraintBottom_toBottomOf="@id/imgFork"
+            app:layout_constraintStart_toEndOf="@id/imgFork"
+            app:layout_constraintTop_toTopOf="@id/imgFork"
+            tools:text="456" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

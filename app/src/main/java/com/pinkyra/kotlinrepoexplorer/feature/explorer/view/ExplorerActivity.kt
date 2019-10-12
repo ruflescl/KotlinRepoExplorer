@@ -4,14 +4,17 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pinkyra.kotlinrepoexplorer.CustomApplication
 import com.pinkyra.kotlinrepoexplorer.R
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.ExplorerRoomRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.remote.ExplorerRetrofitRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.KotlinExplorerUseCase
+import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerInteractor
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModel
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModelFactory
-import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 import kotlinx.android.synthetic.main.activity_explorer.*
 
 class ExplorerActivity : AppCompatActivity() {
@@ -27,33 +30,41 @@ class ExplorerActivity : AppCompatActivity() {
         ).get(ExplorerViewModel::class.java)
     }
 
+    private lateinit var adapter: RepositoryDetailsAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_explorer)
-
+        setupSwipeRefreshLayout()
+        setupRepositoryDetailsList()
         setupObservers()
+    }
+
+    private fun setupRepositoryDetailsList() {
+        val layoutManager = LinearLayoutManager(this)
+
+        adapter = RepositoryDetailsAdapter(arrayListOf())
+        rvRepositoryDetails.layoutManager = layoutManager
+        rvRepositoryDetails.itemAnimator = DefaultItemAnimator()
+        rvRepositoryDetails.adapter = adapter
+
+        val dividerItemDecoration = DividerItemDecoration(
+            rvRepositoryDetails.context,
+            layoutManager.orientation
+        )
+        rvRepositoryDetails.addItemDecoration(dividerItemDecoration)
+    }
+
+    private fun setupSwipeRefreshLayout() {
+        srlRoot.setOnRefreshListener {
+            viewModel.interpret(ExplorerInteractor.ReloadData(true))
+        }
     }
 
     private fun setupObservers() {
         viewModel.viewState.observe(this, Observer {
-            updateList(it)
+            adapter.updateItems(it)
+            srlRoot.isRefreshing = false
         })
-    }
-
-    private fun updateList(repositoryDetail: List<RepositoryDetail>) {
-        txtDetails.text = buildResultText(repositoryDetail)
-    }
-
-    private fun buildResultText(repositoryDetail: List<RepositoryDetail>): String {
-        val stringBuilder = StringBuilder()
-
-        repositoryDetail.forEach {
-            stringBuilder.append("Nome: ").append(it.name)
-            stringBuilder.append(" / Forks: ").append(it.forksCount)
-            stringBuilder.append(" / Stars: ").append(it.stargazersCount)
-            stringBuilder.append("\n----------------\n")
-        }
-
-        return stringBuilder.toString()
     }
 }

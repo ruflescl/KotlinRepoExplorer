@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 class InfiniteScrollListener(
     private val linearLayoutManager: LinearLayoutManager,
-    private val loadNewPage: () -> Unit) :
-RecyclerView.OnScrollListener() {
+    private val loadNewPage: () -> Unit
+) : RecyclerView.OnScrollListener() {
     private var isLoadingNewData = false
 
     override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {

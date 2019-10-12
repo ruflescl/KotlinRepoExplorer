@@ -1,6 +1,7 @@
 package com.pinkyra.kotlinrepoexplorer.feature.explorer.view
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -15,6 +16,7 @@ import com.pinkyra.kotlinrepoexplorer.feature.explorer.usecase.KotlinExplorerUse
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerInteractor
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModel
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModelFactory
+import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
 import kotlinx.android.synthetic.main.activity_explorer.*
 
 class ExplorerActivity : AppCompatActivity() {
@@ -53,6 +55,15 @@ class ExplorerActivity : AppCompatActivity() {
             layoutManager.orientation
         )
         rvRepositoryDetails.addItemDecoration(dividerItemDecoration)
+
+        rvRepositoryDetails.addOnScrollListener(
+            InfiniteScrollListener(layoutManager) { fetchNewPage() }
+        )
+    }
+
+    private fun fetchNewPage() {
+        pbLoadingNextPage.visibility = View.VISIBLE
+        viewModel.interpret(ExplorerInteractor.FetchNextPage(true))
     }
 
     private fun setupSwipeRefreshLayout() {
@@ -63,8 +74,22 @@ class ExplorerActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         viewModel.viewState.observe(this, Observer {
-            adapter.updateItems(it)
-            srlRoot.isRefreshing = false
+            updateList(it)
         })
+    }
+
+    private fun updateList(it: List<RepositoryDetail>) {
+        adapter.updateItems(it)
+        srlRoot.isRefreshing = false
+        pbLoadingNextPage.visibility = View.GONE
+
+        clEmptyState.visibility = when (adapter.itemCount) {
+            0 -> View.VISIBLE
+            else -> View.GONE
+        }
+        rvRepositoryDetails.visibility = when (adapter.itemCount) {
+            0 -> View.GONE
+            else -> View.VISIBLE
+        }
     }
 }

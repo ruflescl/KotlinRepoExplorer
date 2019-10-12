@@ -17,6 +17,7 @@ class RepositoryDetailsAdapter(
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = ListItemRepositoryDetailBinding.inflate(layoutInflater, parent, false)
         return RepositoryViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: RepositoryViewHolder, position: Int) =
@@ -31,9 +32,9 @@ class RepositoryDetailsAdapter(
                 newRepositoryDetails
             )
         )
-        diffResult.dispatchUpdatesTo(this)
         repositoryDetails.clear()
         repositoryDetails.addAll(newRepositoryDetails)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class RepositoryViewHolder(private val binding: ListItemRepositoryDetailBinding) :

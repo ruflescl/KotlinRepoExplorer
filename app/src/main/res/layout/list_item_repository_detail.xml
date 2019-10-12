@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/view_margin_small"
             android:layout_marginTop="@dimen/view_margin_extra_small"
-            android:text="@{item.owner.login}"
+            android:text="@{String.format(@string/list_item_owner_label, item.owner.login)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgAvatar"
             app:layout_constraintTop_toBottomOf="@id/txtRepoName"

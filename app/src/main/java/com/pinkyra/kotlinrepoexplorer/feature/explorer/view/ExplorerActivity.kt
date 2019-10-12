@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.pinkyra.kotlinrepoexplorer.CustomApplication
 import com.pinkyra.kotlinrepoexplorer.R
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.local.ExplorerRoomRepository
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.repository.remote.ExplorerRetrofitRepository
@@ -17,6 +16,7 @@ import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerInterac
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModel
 import com.pinkyra.kotlinrepoexplorer.feature.explorer.viewmodel.ExplorerViewModelFactory
 import com.pinkyra.kotlinrepoexplorer.model.RepositoryDetail
+import com.pinkyra.kotlinrepoexplorer.room.AppDatabase
 import kotlinx.android.synthetic.main.activity_explorer.*
 
 class ExplorerActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class ExplorerActivity : AppCompatActivity() {
             ExplorerViewModelFactory(
                 KotlinExplorerUseCase(
                     ExplorerRetrofitRepository(),
-                    ExplorerRoomRepository((application as CustomApplication).database)
+                    ExplorerRoomRepository(AppDatabase.getInstance(applicationContext))
                 )
             )
         ).get(ExplorerViewModel::class.java)

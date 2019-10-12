@@ -26,8 +26,8 @@ And it has a few other quirks:
  
 ## What it lacks?
  - More unit tests (Right now, it has one Espresso-based instrumented test for its only Activity and one MockK unit test for its only ViewModel)
- - I could not import the EspressoIdlingResources for better test timing, so I'm using `Thread.sleep` for now :(
+ - I could not import EspressoIdlingResources for better test timing, so I'm using `Thread.sleep` for now :(
  - A better use of Room's capabilities
  - And maybe some nice layout updates
  
-I hope you like it! :D
+And that's it for now! I hope you like it! :D

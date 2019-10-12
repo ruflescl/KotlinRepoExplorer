@@ -1,0 +1,85 @@
+{
+  "items": [
+    {
+      "name": "1-repo",
+      "owner": {
+        "login": "owner1",
+        "avatar_url": "url1"
+      },
+      "stargazers_count": 1,
+      "forks_count": 10
+    },
+    {
+      "name": "2-repo",
+      "owner": {
+        "login": "owner2",
+        "avatar_url": "url2"
+      },
+      "stargazers_count": 2,
+      "forks_count": 20
+    },
+    {
+      "name": "3-repo",
+      "owner": {
+        "login": "owner3",
+        "avatar_url": "url3"
+      },
+      "stargazers_count": 3,
+      "forks_count": 30
+    },
+    {
+      "name": "4-repo",
+      "owner": {
+        "login": "owner4",
+        "avatar_url": "url4"
+      },
+      "stargazers_count": 4,
+      "forks_count": 40
+    },
+    {
+      "name": "5-repo",
+      "owner": {
+        "login": "owner5",
+        "avatar_url": "url5"
+      },
+      "stargazers_count": 5,
+      "forks_count": 50
+    },
+    {
+      "name": "6-repo",
+      "owner": {
+        "login": "owner6",
+        "avatar_url": "url6"
+      },
+      "stargazers_count": 6,
+      "forks_count": 60
+    },
+    {
+      "name": "7-repo",
+      "owner": {
+        "login": "owner7",
+        "avatar_url": "url7"
+      },
+      "stargazers_count": 7,
+      "forks_count": 70
+    },
+    {
+      "name": "8-repo",
+      "owner": {
+        "login": "owner8",
+        "avatar_url": "url8"
+      },
+      "stargazers_count": 8,
+      "forks_count": 80
+    },
+    {
+      "name": "9-repo",
+      "owner": {
+        "login": "owner9",
+        "avatar_url": "url9"
+      },
+      "stargazers_count": 9,
+      "forks_count": 90
+    }
+  ]
+}

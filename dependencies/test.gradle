@@ -1,7 +1,9 @@
 ext {
     def JUnit = "4.12"
+    def MockWebServer = "4.2.1"
 
     testImpl = [
-            junit: "junit:junit:${JUnit}"
+            junit        : "junit:junit:${JUnit}",
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${MockWebServer}"
     ]
 }

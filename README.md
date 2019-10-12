@@ -1,5 +1,7 @@
 # KotlinRepoExplorer
 
+<img src="https://github.com/ruflescl/KotlinRepoExplorer/blob/master/snapshots/full_list.png" width="250"> <img src="https://github.com/ruflescl/KotlinRepoExplorer/blob/master/snapshots/empty_state.png" width="250"> <img src="https://github.com/ruflescl/KotlinRepoExplorer/blob/master/snapshots/reload.png" width="250">
+
 ## What is it?
 
 It's a simple Android app that fetches all Kotlin-based repositories from GitHub, ordered by their stargazer count.

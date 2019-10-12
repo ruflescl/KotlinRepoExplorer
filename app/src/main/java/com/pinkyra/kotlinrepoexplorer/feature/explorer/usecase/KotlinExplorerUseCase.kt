@@ -28,7 +28,7 @@ class KotlinExplorerUseCase(
         fetchData(query, sort, currentPage)
     }
 
-    override suspend fun clearAllData() {
+    override suspend fun clearAllData() = withContext(Dispatchers.IO) {
         localRepository.deleteAllData()
     }
 

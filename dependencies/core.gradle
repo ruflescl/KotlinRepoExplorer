@@ -1,5 +1,5 @@
 ext {
-    def AndroidXCore = "1.0.2"
+    def AndroidXCore = "1.0.0"
     def AndroidXConstraintLayout = "1.1.3"
     def Picasso = "2.71828"
     def Retrofit = "2.6.2"
@@ -11,9 +11,9 @@ ext {
     def Room = "2.2.0"
     def Recyclerview = "1.0.0"
 
-
     kotlin = [
             kotlinStdLib     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            reflect          : "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version",
             coroutinesCore   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Coroutines}",
             coroutinesAndroid: "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Coroutines}"
     ]

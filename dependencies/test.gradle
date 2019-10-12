@@ -1,9 +1,15 @@
 ext {
     def JUnit = "4.12"
     def MockWebServer = "4.2.1"
+    def Mockk = "1.8.8.kotlin13"
+    def AndroidArch = "1.1.1"
+    def Coroutines = "1.3.2"
 
     testImpl = [
             junit        : "junit:junit:${JUnit}",
-            mockWebServer: "com.squareup.okhttp3:mockwebserver:${MockWebServer}"
+            mockWebServer: "com.squareup.okhttp3:mockwebserver:${MockWebServer}",
+            mockk        : "io.mockk:mockk:${Mockk}",
+            androidArch  : "android.arch.core:core-testing:${AndroidArch}",
+            coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Coroutines}"
     ]
 }
